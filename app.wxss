@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'iconfont';  /* project id 841610 */
+  src: url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.eot');
+  src: url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.woff') format('woff'),
+  url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_841610_6obqqd8j0bu.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont", serif !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-pay:before {
+  content: "\e673";
+}
+
+.icon-back:before {
+  content: "\e679";
+}
+
+.icon-user:before {
+  content: "\e632";
+}
+
+.icon-helpo:before {
+  content: "\e743";
+}
+
+.icon-order:before {
+  content: "\e61f";
+}
+
+.icon-walk:before {
+  content: "\e606";
+}
+
+.icon-phone:before {
+  content: "\e64c";
+}
+
+.icon-bus:before {
+  content: "\e618";
+}
+
+.icon-idcard:before {
+  content: "\e71d";
+}
+
+.icon-travel-tourism_sunse1:before {
+  content: "\ef56";
+}
+
+.icon-travel-tourism_sunse:before {
+  content: "\ef57";
+}
+
+.icon-travel-tourism_surfi:before {
+  content: "\ef58";
+}
+
+page {
+  --secondary-color: indianred;
+}

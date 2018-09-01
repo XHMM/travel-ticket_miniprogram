@@ -1,0 +1,66 @@
+<view bindtap="toggleStatus" id="title">
+  <view id="titleBig">{{status==='hasAlive'?'去旅行':'历史'}}</view>
+  <view id="titleSmall">切换</view>
+</view>
+<block wx:if="{{loading}}">
+  <view class="loading-text">旅行者，你好！正在获取旅行列表...</view>
+</block>
+<block wx:else>
+  <block wx:if="{{status === 'hasAlive'}}">
+    <view wx:if="{{hasAliveBeauties.length==0}}" class="empty-placeholder">
+      <i class="iconfont icon-travel-tourism_sunse"></i>
+      <view>世界很大，我却还没准备好</view>
+    </view>
+
+    <swiper wx:else circular="{{true}}" class="swiper--beauty" previous-margin="20px" next-margin="20px" bindchange="onSwipe">
+    <block wx:for="{{hasAliveBeauties}}" wx:key="_id">
+      <swiper-item class="swiper-item--beauty">
+        <navigator class="swiper-beauty-img-wrapper" url="/pages/detail/index?_id={{item._id}}">
+          <block wx:if="{{item.cycleInfo.length>1}}"><view>共 {{item.cycleInfo.length}} 期</view></block>
+          <block wx:else><view>{{item.cycleInfo[0].availableSeats}} / {{item.seats}}</view></block>
+          <image src="{{item.images.indexUrl}}"></image>
+        </navigator>
+        <view class="swiper-beauty-desc-wrapper">
+          <view class="desc-wrapper__left">
+          </view>
+          <view class="desc-wrapper__right">
+            <view class="swiper-beauty-title">{{item.name}}</view>
+            <view class="swiper-beauty-price">￥{{item.price.student}}</view>
+          </view>
+        </view>
+      </swiper-item>
+    </block>
+    </swiper>
+  </block>
+  <block wx:elif="{{status === 'noAlive'}}">
+    <view wx:if="{{noAliveBeauties.length==0}}" class="empty-placeholder">
+      <i class="iconfont icon-travel-tourism_sunse1"></i>
+      <view>时光飞逝，我却不曾留下</view>
+    </view>
+    <swiper wx:else circular="{{true}}" class="swiper--beauty" previous-margin="20px" next-margin="20px" bindchange="onSwipe">
+    <block wx:for="{{noAliveBeauties}}" wx:key="_id">
+        <swiper-item class="swiper-item--beauty">
+          <navigator class="swiper-beauty-img-wrapper" url="/pages/detail/index?_id={{item._id}}">
+            <image src="{{item.images.indexUrl}}"></image>
+          </navigator>
+          <view class="swiper-beauty-desc-wrapper">
+            <view class="desc-wrapper__left">
+            </view>
+            <view class="desc-wrapper__right">
+              <view class="swiper-beauty-title">{{item.name}}</view>
+              <view class="swiper-beauty-price">￥{{item.price.student}}</view>
+            </view>
+          </view>
+        </swiper-item>
+      </block>
+      </swiper>
+    </block>
+
+  <view id="indicator" wx:if="{{hasAliveTotal!==0 && status=='hasAlive'}}">
+    {{currentPos}} / {{hasAliveTotal}}
+  </view>
+  <view id="indicator" wx:if="{{noAliveTotal!==0 && status=='noAlive'}}">
+    {{currentPos}} / {{noAliveTotal}}
+  </view>
+</block>
+

@@ -1,0 +1,55 @@
+.avatar-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.map-loading {
+  position: fixed;
+  top:130px;
+  left: 50%;
+  font-weight: bold;
+  font-size: 0.8rem;
+  transform: translateX(-50%);
+}
+.map-wrapper {
+  width: 100%;
+  height: 45vh;
+}
+.menu-wrapper {
+}
+
+.avatar {
+  width: 90px;
+  height:90px;
+  border-radius: 50%;
+  display: block;
+  overflow: hidden;
+  background: lightskyblue;
+}
+
+
+
+.menu {
+  height: 152rpx;
+  margin: 10px 15px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+}
+.menu-title {
+  margin-left: 26px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color:rgba(10,10,10,0.86);
+}
+
+.menu--history-orders {
+  background:linear-gradient(30deg, rgba(152, 204, 234, 0.9), rgba(255,255,255,0.7) 145%),url(https://static.liaojungang.com/mp-travel-chores/home-index.jpg) center / 100% 100% no-repeat;
+}
+/*.to-msgs {
+  background:linear-gradient(30deg, rgba(200, 108, 72,0.95) 0%,rgba(255,255,255,0.1)  145%),url(https://images.unsplash.com/photo-1536007164800-b7f11331f35c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2fea553f92753fc4768ec28d8c619968&auto=format&fit=crop&w=600&q=60) center / 100% 100% no-repeat;
+}*/
+
+
+

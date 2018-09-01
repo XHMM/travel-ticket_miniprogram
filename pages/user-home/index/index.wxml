@@ -1,0 +1,18 @@
+<!--如果旅行目的地有广东上海，须考虑修改下地图，因为目前根本点不到他们-->
+<view class="avatar-wrapper">
+  <open-data type="userAvatarUrl" class="avatar"></open-data>
+</view>
+<view wx:if="{{chartLoading}}" class="map-loading">{{sentence}}，稍等...</view>
+<view class="map-wrapper">
+  <ec-canvas id="footmap" canvas-id="footmap" ec="{{ ec }}"></ec-canvas>
+</view>
+<view class="menu-wrapper">
+  <navigator class="menu menu--history-orders" url="/pages/user-home/history-orders/index">
+    <view class="menu-title">我的旅行</view>
+  </navigator>
+
+  <!--<navigator class="menu menu--msgs" url="/pages/test/index">
+    <view class="menu-title">测试页面</view>
+  </navigator>-->
+</view>
+

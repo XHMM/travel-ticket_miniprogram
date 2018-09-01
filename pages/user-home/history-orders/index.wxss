@@ -1,0 +1,169 @@
+#loadingText {
+  margin-top: 30vh;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.center-text {
+  margin-top: 30vh;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  color:#0d0d0d;
+}
+
+
+.iconfont {
+  margin-right: 7px;
+}
+#tabbar {
+  display:flex;
+  justify-content:space-around;
+  height:40px;
+  box-sizing:border-box;
+  align-items:center;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow:  0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
+}
+/*这么做目的是增大tabbar item的点击面积*/
+#tabbar > view {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.active-tab {
+  color:rgb(24,153,220);
+}
+
+.orders-wrapper {
+  height: calc(100vh - 45px); /*#tabbar height 45px + margin-bottom 10px*/
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+.order-detail-card {
+  position: relative;
+  margin: 10px 10px 13px;
+  box-shadow:0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card-bg {
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index:-1;
+  filter: brightness(75%);
+}
+.card-content {
+  padding: 12px 10px;
+  box-sizing: border-box;
+  height: 100%;
+  color:floralwhite;
+  position: relative;
+}
+/*!*景点状态 alive | doing | expired*!
+.beauty-status--alive,beauty-status--doing,.beauty-status--expired {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 0.6rem;
+}
+.beauty-status--alive {
+
+}
+.beauty-status--doing {
+
+}
+.beauty-status--expired {
+
+}*/
+.content-location {
+  font-weight: bold;
+  width: 90%;
+  font-size: 1.4rem;
+  margin-right: 5px;
+}
+.location-province {
+  display: inline-block;
+  font-size: 1rem;
+  color:rgb(230,230,230);
+  margin-bottom: .5px;
+}
+
+.content-orderid,.content-pay {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 0.8rem;
+}
+.orderid-icon {
+
+}
+.orderid-id {
+
+}
+
+.pay-time {
+
+}
+.pay-fee {
+  margin-left: 5px;
+}
+
+.content-time {
+  margin-top: 20px;
+  margin-bottom: 35px;
+  padding: 0 8px;
+  display: flex;
+  color:white;
+  align-items: center;
+  justify-content: space-between;
+}
+.time-start, .time-end {
+  position: relative;
+}
+.time-start__date, .time-end__date {
+  font-size: 1.2rem;
+}
+.time-start__hour, .time-end__hour {
+  position: absolute;
+  top:100%;
+  right:0;
+  font-size: 1rem;
+}
+.time-icon {
+  font-size: 0.8rem;
+}
+
+.content-forms {
+  width:80%;
+}
+.form-content {
+  font-size: 0.9rem;
+  position: relative;
+}
+.form-content > view {
+  margin-top: 3px;
+}
+.form-content-image {
+  width:50px;
+  height:50px;
+  position:absolute;
+  right:15px;
+  bottom:50px;
+
+}
+.form-content-control {
+  position:absolute;
+  right: 5px;
+  bottom: 0;
+  font-size: 0.7rem;
+  color:white;
+  border: 10px solid transparent;
+}
+
+

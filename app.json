@@ -1,0 +1,31 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/detail/index",
+    "pages/buy/index",
+    "pages/article/index",
+    "pages/user-home/index/index",
+    "pages/user-home/history-orders/index"
+  ],
+  "tabBar":{
+    "selectedColor": "#1296db",
+    "list":[
+      {
+        "pagePath":"pages/index/index",
+        "iconPath":"images/tab/footprint.png",
+        "text":"旅行",
+        "selectedIconPath":"images/tab/footprint-s.png"
+      },
+      {
+        "pagePath":"pages/user-home/index/index",
+        "text":"历史",
+        "iconPath":"images/tab/home.png",
+        "selectedIconPath":"images/tab/home-s.png"
+      }
+    ]
+  },
+  "window":{
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle":"black"
+  }
+}

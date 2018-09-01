@@ -1,0 +1,78 @@
+<i class="iconfont icon-back" style="position:fixed;top:{{statusbarHeight}}px;left:10px;z-index: 1000;font-size: 1.2rem;width:35px;height:30px;" bindtap="goBack"></i>
+
+<swiper circular="{{true}}"  class="swiper--detail" indicator-dots="{{detailShow?false:true}}" autoplay="{{detailShow?false:true}}">
+  <block wx:for="{{images.detailUrls}}" wx:key="*this">
+    <swiper-item class="swiper-item--detail">
+      <view class="swiper-detail-img-wrapper">
+        <image src="{{item}}" style="{{detailShow?'blur(1.4px);transform:scale(1.01);':''}}"></image>
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+
+<block wx:if="{{!hasSelectCycle}}">
+  <view class="cycleSelect-wrapper">
+    <view class="cycleTitle" style="margin-top:{{40 + statusbarHeight}}px;"  id="cycleTitle">请选择期数</view>
+    <view class="cycleContent" style="height:calc(100vh - {{cycleContentMarginTop}}px);">
+      <block wx:for="{{cycleList}}" wx:key="_id">
+        <view data-id="{{item._id}}" bindtap="selectCycle" class="cycle-item {{item.status==='alive'? 'cycle-item--alive': 'cycle-item--expired'}}">
+          <view class="cycle-item____left">
+              <view class="cycle-item____left_top cycle-item__name">{{item.name}}</view>
+              <view class="cycle-item____left_bottom">
+                <view class="cycle-item__startTime">{{item.startTime}}</view>
+                <view class="cycle-item__endTime">{{item.endTime}}</view>
+              </view>
+          </view>
+          <view class="cycle-item____right" wx:if="{{item.status==='alive'}}">
+            <view class="cycle-item__av" wx:if="{{item.status==='alive'}}">{{item.av}} / {{seats}}</view>
+            <view class="cycle-item__leftDays">{{item.leftDaysToStart}}</view>
+          </view>
+          <view class="cycle-item____right cycle-item__expiredWord" wx:if="{{item.status !=='alive'}}">报名结束</view>
+
+        </view>
+      </block>
+    </view>
+
+  </view>
+</block>
+
+<block wx:else>
+  <view id="open-detail" wx:if="{{!detailShow}}" bindtap="openDetail">参加</view>
+  <view class="detail" style="{{ detailShow?'display:flex':'display:none'}}">
+    <view class="detail-content">
+      <!--活动大概详情-->
+      <view class="beauty-summary">
+        <view class="beauty-name" style="font-size: {{name.length>14?'1.35rem':''}}">{{name}} {{selectedCycle.name}}</view>
+        <view class="beauty-city">{{location.firstLevel}} {{location.secondLevel}}</view>
+        <view class="beauty-time">
+          <view class="beauty-time__from">
+            <view class="beauty-time__from__location">{{startLocation}}</view>
+            <view class="beauty-time__from__time">{{selectedCycle.status ==='alive' ? selectedCycle.startTime+" ("+selectedCycle.leftDaysToStart+"天后)" : selectedCycle.startTime+'(已结束)' }}</view>
+          </view>
+          <view class="beauty-time__to">
+            <view class="beauty-time__to__location">{{endLocation}}</view>
+            <view class="beauty-time__to__time">{{selectedCycle.endTime}}</view>
+          </view>
+        </view>
+      </view>
+      <!--注意事项-->
+      <view class="beauty-warnings"></view>
+      <navigator url="/pages/article/index?url={{articleUrl}}" class="beauty-to-article">点击查看更详细内容</navigator>
+      <view class="detail-actions">
+        <view bindtap="closeDetail" id="close-detail" class="action-item">欣赏风景</view>
+        <view wx:if="{{selectedCycle.status === 'alive'}}" class="join-wrapper">
+          <view class="beauty-fee">
+            <view class="beauty-fee-student">{{price.student}}</view>
+            <view class="beauty-fee-adult">{{price.adult}}</view>
+          </view>
+
+          <view  class="action-join action-item" bindtap="join">我要参加</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+
+
+

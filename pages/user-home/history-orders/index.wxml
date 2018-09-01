@@ -1,0 +1,84 @@
+<wxs module="tools">
+  function split(str, sign) {
+    return str.split(sign);
+  }
+  function getOrdersByStatus(status, aliveOrders, doingOrders, expiredOrders) {
+    if(status == 'alive') return aliveOrders;
+    if(status == 'doing') return doingOrders;
+    if(status == 'expired') return expiredOrders;
+  }
+  module.exports.split = split;
+  module.exports.getOrdersByStatus = getOrdersByStatus;
+</wxs>
+
+
+
+<block wx:if="{{loading}}">
+  <view id="loadingText">旅行记录获取中...</view>
+</block>
+<block wx:else>
+  <block wx:if="{{orders.length===0}}">
+    <view class="center-text">我不曾随着九洲踏足远方</view>
+  </block>
+  <block wx:else>
+    <view id="tabbar">
+      <view data-status="alive" class="{{status==='alive'? 'active-tab':''}}" bindtap="changeType">未开始</view>
+      <view data-status="doing" class="{{status==='doing'? 'active-tab':''}}" bindtap="changeType">进行中</view>
+      <view data-status="expired" class="{{status==='expired'? 'active-tab':''}}" bindtap="changeType">已结束</view>
+    </view>
+    <view class="orders-wrapper">
+      <block wx:for="{{tools.getOrdersByStatus(status, aliveOrders, doingOrders, expiredOrders)}}" wx:key="_id">
+        <view class="order-detail-card">
+          <image class="card-bg" src="{{item.beauty.images.indexUrl}}" ></image>
+          <view class="card-content">
+            <!--        <view class="beauty-status&#45;&#45;alive" wx:if="{{item.cycle.status==='alive'}}">未开始</view>
+                  <view class="beauty-status&#45;&#45;doing" wx:if="{{item.cycle.status==='doing'}}">进行中</view>
+                  <view class="beauty-status&#45;&#45;expired" wx:if="{{item.cycle.status==='expired'}}">已结束</view>-->
+            <navigator url="/pages/detail/index?_id={{item.beauty._id}}" class="content-location">
+              <view style="{{item.beauty.name.length>14? 'font-size:1.2rem;':''}}">
+                {{item.beauty.name}}{{item.cycle.name}}
+                <view class="location-province">{{item.beauty.location.firstLevel}} {{item.beauty.location.secondLevel}}</view></view>
+            </navigator>
+            <view class="content-orderid">
+              <i class="orderid-icon iconfont icon-order"></i>
+              <text selectable="{{true}}" class="orderid-id">{{item._id}}</text>
+            </view>
+            <view class="content-pay">
+              <i class="pay-icon iconfont icon-pay"></i>
+              <view class="pay-time">{{item.payTime}}</view>
+              <view class="pay-fee">￥{{item.payFee}}</view>
+            </view>
+            <view class="content-time">
+              <view class="time-start">
+                <view class="time-start__date">{{tools.split(item.cycle.startTime, " ")[0]}}</view>
+                <!--<view class="time-start__hour">{{item.cycle.leftDaysToStart}}天后</view>-->
+              </view>
+              <i class="iconfont icon-walk time-icon"></i>
+              <view class="time-end">
+                <view class="time-end__date">{{tools.split(item.cycle.endTime, " ")[0]}}</view>
+                <!--<view class="time-end__hour">{{tools.split(item.cycle.endTime, " ")[1]}}</view>-->
+              </view>
+            </view>
+            <view class="content-forms">
+              <view class="form-content-control" bindtap="toggleForms" data-id="{{item._id}}"> {{item.formsOpen? '点击折叠' : item.forms.length+'位旅人'}}   </view>
+              <image wx:if="{{item.formsOpen}}" src="{{item.beauty.images.qrUrl}}" class="form-content-image" data-url="{{item.beauty.images.qrUrl}}" bindtap="previewImage"></image>
+              <block wx:if="{{item.formsOpen}}" wx:for="{{item.forms}}" wx:key="idCard" wx:for-item="formItem" wx:for-index="formIndex">
+                <view class="form-content" style="margin-top:13px;">
+                  <view><i class="iconfont icon-user"></i>{{formItem.userName}} </view>
+                  <view><i class="iconfont icon-phone"></i>{{formItem.tel}}</view>
+                  <view><i class="iconfont icon-idcard"></i>{{formItem.idCard}}</view>
+                  <view><i class="iconfont icon-bus"></i>{{formItem.getOnPlace}}</view>
+                </view>
+              </block>
+            </view>
+
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{tools.getOrdersByStatus(status, aliveOrders, doingOrders, expiredOrders).length === 0}}">
+        <view  class="center-text">空荡荡</view>
+      </block>
+    </view>
+    <!--订单量增多时，考虑实现底部无限加载-->
+  </block>
+</block>

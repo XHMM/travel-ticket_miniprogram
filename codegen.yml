@@ -1,0 +1,9 @@
+schema: http://localhost/graphql
+overwrite: true
+generates:
+  ./typings/graphql-client.d.ts:
+    plugins:
+      - typescript-common
+      - typescript-client
+      - typescript-server # 只用client发现得到的声明文件里只有xxxInput，郁闷...
+watch: false

@@ -1,0 +1,104 @@
+<image src="{{indexUrl}}" class="bg"></image>
+<view class="bg-mask"></view>
+
+<view class="fg" bindtap="closeHelp">
+  <view class="warning">
+    <i class="warning-toggle iconfont icon-helpo" catchtap="toggleHelp"></i>
+    <view class="warning-content" style="display: {{helpOpen? 'block':'none'}}">购买时会按照学生票价付款，完毕后会加入对应旅游群，发送支付成功后的订单信息截图并进行学生审核，若非学生则须补充差价</view>
+
+  </view>
+  <view id="beautyName" wx:if="{{!hasBought}}">{{name}} {{cycleName}}</view>
+
+
+  <form bindsubmit="submit" wx:if="{{hasBought===false}}">
+    <scroll-view scroll-y="{{true}}" style="height: 46vh;" scroll-into-view="{{toInputs}}">
+      <block wx:for="{{forms}}" wx:key="id">
+        <view data-id="{{item.id}}" class="inputs-wrapper" id="{{item.id}}">
+          <view wx:if="{{index>0}}" class="inputs-remove" bindtap="removeInputs" data-id="{{item.id}}"></view>
+          <view class="input-wrapper">
+            <input type="text"
+                   placeholder="{{forms.length>1?'姓名'+(index+1):'姓名'}}"
+                   class="input"
+                   bindinput="onInput"
+                   maxlength="10"
+                   data-name="name"
+                   data-id="{{item.id}}"
+            />
+          </view>
+          <view class="input-wrapper">
+            <input type="number"
+                   placeholder="联系手机号"
+                   maxlength="11"
+                   class="input"
+                   bindinput="onInput"
+                   data-name="tel"
+                   data-id="{{item.id}}"
+            />
+          </view>
+          <view class="input-wrapper">
+            <input type="idcard"
+                   placeholder="身份证号"
+                   maxlength="18"
+                   confirm-type="done"
+                   class="input"
+                   bindinput="onInput"
+                   data-name="idcard"
+                   data-id="{{item.id}}"
+            />
+          </view>
+          <view class="getOnPlace-wrapper">
+            <view class="input-wrapper">
+              <picker wx:if="{{item.getonplacestatus==='select'}}" bindchange="onGetOnPlacePickerChange" data-id="{{item.id}}" value="{{item.getonplaceselect}}" range="{{getOnPlaces}}" class="getOnPlace-picker">
+                <view>选择上车地点: {{getOnPlaces[item.getonplaceselect]}} </view>
+              </picker>
+              <input wx:else
+                     type="text"
+                     placeholder="上车地点"
+                     maxlength="18"
+                     confirm-type="done"
+                     class="input"
+                     bindinput="onInput"
+                     data-name="getonplaceinput"
+                     data-id="{{item.id}}"
+              />
+            </view>
+            <view bindtap="toggleGetOnPlaceStatus" class='getOnPlace-toggle' data-id="{{item.id}}">
+              {{item.getonplacestatus ==='select' ? "自行填写" : '选择预置'}}
+            </view>
+          </view>
+
+        </view>
+      </block>
+    </scroll-view>
+    <view bindtap="addInputs" id="addInputs">增加同行者</view>
+    <button form-type="submit" class="btn">￥{{price}} / 人</button>
+  </form>
+
+  <view wx:if="{{hasBought}}" class="success-region">
+    <view class="order-detail">
+      <view class="detail-item">
+        <view class="item--left">活动名</view>
+        <view class="item--right">{{name}} {{cycleName}}</view>
+      </view>
+      <view class="detail-item">
+        <view class="item--left">订单号</view>
+        <view class="item--right">{{orderId}}</view>
+      </view>
+      <view class="detail-item">
+        <view class="item--left">支付时间</view>
+        <view class="item--right">{{payTime}}</view>
+      </view>
+      <view class="detail-item">
+        <view class="item--left">支付金额</view>
+        <view class="item--right">￥{{payFee}}</view>
+      </view>
+
+    </view>
+    <view class="qr">
+      <image src="{{qrUrl}}" class="qr-img" data-url="{{qrUrl}}" bindtap="previewImage"></image>
+    </view>
+    <view class="save-reminder">请扫码加入旅行群，并处理差价事宜</view>
+
+  </view>
+</view>
+

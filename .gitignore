@@ -1,0 +1,6 @@
+node_modules
+*.js
+*.map
+!libs/**/*
+!miniprogram_npm/**/*
+.idea
